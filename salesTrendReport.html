@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui" />
+    <title></title>
+    <!-- DataTables -->
+    <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+
+    <script>
+        if (!localStorage.getItem('token') || !localStorage.getItem('userName') || !localStorage.getItem('password')) { window.location.replace(`index.php`) }
+    </script>
+</head>
+
+<body>
+    <!-- Navigation Bar-->
+    <header id="topnav">
+        <div class="topbar-main">
+            <div class="container-fluid">
+                <!-- Logo container-->
+                <div class="logo">
+                    <a href="dashboard.html" class="logo"><img src="images/logo.png" alt="" class=""></a>
+                </div>
+                <!-- End Logo container-->
+                <div class="menu-extras topbar-custom">
+                    <ul class="list-inline float-right mb-0">
+                        <li class="list-inline-item hide-phone app-search">
+                            <h4 id="username"></h4>
+                        </li>
+                        <!-- language-->
+
+
+                        <!-- User-->
+                        <li class="list-inline-item dropdown notification-list">
+                            <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown"
+                                href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <img src="images/avatar-1.jpg" alt="user" class="rounded-circle" />
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right profile-dropdown">
+                                <!-- item-->
+                                <div class="dropdown-item noti-title">
+                                    <h5>Welcome</h5>
+                                </div>
+                                <a class="dropdown-item" href="#"><i
+                                        class="fa fa-user-o m-r-5 text-muted"></i>Profile</a>
+                                <span id="createEmployeebutton">
+
+                                </span>
+                                <div class="dropdown-divider"></div>
+                                <button class="dropdown-item" id="logoutButton"><i
+                                        class="fa fa-sign-out m-r-5 text-muted"></i>Logout</button>
+                            </div>
+                        </li>
+                        <li class="menu-item list-inline-item">
+                            <!-- Mobile menu toggle-->
+                            <a class="navbar-toggle nav-link">
+                                <div class="lines"><span></span> <span></span> <span></span></div>
+                            </a>
+                            <!-- End mobile menu toggle-->
+                        </li>
+                    </ul>
+                </div>
+                <!-- end menu-extras -->
+                <div class="clearfix"></div>
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end topbar-main -->
+        <!-- MENU Start -->
+        <div class="navbar-custom">
+            <div class="container-fluid">
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu text-center">
+                        <li class="has-submenu">
+                            <a href="dashboard.html"><i class="fa fa-plane"></i>Dashboard</a>
+                        </li>
+                        <li class="has-submenu">
+
+                        </li>
+
+                        <!-- <li class="has-submenu">
+                            <a href="#"><i class="fa fa-product-hunt"></i>Reports</a>
+                            <ul class="submenu">
+                                <li><a class="dropdown-item" href="#">Sales Trend report</a></li>
+                            </ul>
+                        </li> -->
+                    </ul>
+                    <!-- End navigation menu -->
+                </div>
+                <!-- end #navigation -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end navbar-custom -->
+    </header>
+    <!-- End Navigation Bar-->
+
+
+
+
+    <div class="left side-menu">
+        <!--<button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect"><i class="ion-close"></i></button>
+<!-- LOGO -->
+        <div class="topbar-left">
+            <div class="text-center">
+                <!--<a href="index.html" class="logo"><i class="mdi mdi-assistant"></i>Zoter</a>-->
+                <a href="index.html" class="logo"><img src="assets/images/logo-lg.png" alt="" class="logo-large" /></a>
+            </div>
+        </div>
+        <div class="sidebar-inner niceScrollleft" style="overflow: hidden; outline: currentcolor none medium;"
+            tabindex="5000">
+            <div id="sidebar-menu" class="active">
+                <li>
+                    <span class="caret-margin-top">
+                        <i class="fa fa-laptop" aria-hidden="true"></i>
+                        <span class="h-g">
+                            <a id="dashboardLink" href="dashboard.html">Dashboard</a>
+                        </span>
+                    </span>
+                </li>
+                <span id="uploadButtonInHeader">
+
+                </span>
+                <span id="clientPage">
+
+                </span>
+                </ul>
+                </li>
+
+
+
+
+                <!-- <li><span class="caret caret-margin-top"><span class="h-g">Reports </span></span>
+                    <ul class="nested">
+                        <li><a class="dropdown-item" href="salesTrendReport.html">Sales Trend report</a></li>
+                    </ul>
+                </li> -->
+                </ul>
+
+
+
+
+
+
+                </li>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let username = document.querySelector('#username');
+        username.innerHTML = localStorage.getItem('userName')
+    </script>
+
+    <!-- Header End -->
+
+
+
+    <div class="wrapper contat-left">
+        <div class="container-fluid">
+
+            <p>&nbsp;</p>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="row" action='' novalidate="" method="post">
+                                <div class="form-group mb-0 col-md-4">
+                                    <h4>Sales Trend Report</h4>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <table id="datatable" class="table table-striped table-responsive table-bordered w-100">
+                                <thead>
+                                    <tr>
+                                        <th class="border-top-0">Trans Id</th>
+                                        <th class="border-top-0">Store</th>
+                                        <th class="border-top-0">System Category</th>
+                                        <th class="border-top-0">Salesperson</th>
+                                        <th class="border-top-0">Contract Type</th>
+                                        <th class="border-top-0">Department</th>
+                                        <th class="border-top-0">Customer</th>
+                                        <th class="border-top-0">Category</th>
+                                        <th class="border-top-0">Trans type</th>
+                                        <th class="border-top-0">Product Desc</th>
+                                        <th class="border-top-0">Product Id</th>
+                                        <th class="border-top-0">Qty</th>
+                                        <th class="border-top-0">Unit Cost</th>
+                                        <th class="border-top-0">Unit Price</th>
+                                        <th class="border-top-0">Discounts</th>
+                                        <th class="border-top-0">Ext Cost</th>
+                                        <th class="border-top-0">Ext price</th>
+                                        <th class="border-top-0">GP</th>
+                                        <th class="border-top-0">Tax</th>
+                                        <th class="border-top-0">Total Sales</th>
+                                        <th class="border-top-0">Mobile Number</th>
+                                        <th class="border-top-0">Serial 1</th>
+                                        <th class="border-top-0">SKU</th>
+                                        <th class="border-top-0">Trans Start Time</th>
+                                        <th class="border-top-0">Trans Date</th>
+                                        <th class="border-top-0">Trans Day</th>
+                                        <th class="border-top-0">Trans Month</th>
+                                        <th class="border-top-0">Trans Year</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end wrapper -->
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">Copyright © 2020 agile . All rights reserved.</div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
+        <!-- jQuery  -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/modernizr.min.js"></script>
+        <script src="js/waves.js"></script>
+        <script src="js/jquery.nicescroll.js"></script>
+        <!-- Required datatable js -->
+        <script src="js/jquery.dataTables.min.js"></script>
+        <script src="js/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="js/dataTables.buttons.min.js"></script>
+        <script src="js/buttons.bootstrap4.min.js"></script>
+        <script src="js/jszip.min.js"></script>
+        <script src="js/pdfmake.min.js"></script>
+        <script src="js/vfs_fonts.js"></script>
+        <script src="js/buttons.html5.min.js"></script>
+        <script src="js/buttons.print.min.js"></script>
+        <script src="js/buttons.colVis.min.js"></script>
+        <!-- Responsive examples -->
+        <script src="js/dataTables.responsive.min.js"></script>
+        <script src="js/responsive.bootstrap4.min.js"></script>
+        <!-- Datatable init js -->
+        <script src="js/datatables.init.js"></script>
+        <!-- App js -->
+        <script src="js/app.js"></script>
+
+        <script src="fetch/api.js"></script>
+        <script src="fetch/logout.js"></script>
+        <script>
+            let stores = localStorage.getItem('storelist')
+            let product = localStorage.getItem('labelArray')
+            let clientName = localStorage.getItem('clientforreport')
+            let endDate = localStorage.getItem('endDate')
+            let startDate = localStorage.getItem('startDate')
+
+            $('#datatable').DataTable({
+                "ajax": {
+                    url: `${apistl}/${clientName}/${stores}/${product}/${startDate}/${endDate}`,
+                    dataSrc: 'data',
+
+                },
+                "columns": [
+                    { "data": "Trans_ID" },
+                    { "data": "Store" },
+                    { "data": "System_Category" },
+                    { "data": "Salesperson" },
+                    { "data": "Contract_Type" },
+                    { "data": "Department" },
+                    { "data": "Customer" },
+                    { "data": "Category" },
+                    { "data": "Trans_Type" },
+                    { "data": "Product_Desc" },
+                    { "data": "Product_ID" },
+                    { "data": "Qty" },
+                    { "data": "Unit_Cost" },
+                    { "data": "Unit_Price" },
+                    { "data": "Discounts" },
+                    { "data": "Ext_Cost" },
+                    { "data": "Ext_Price" },
+                    { "data": "gp" },
+                    { "data": "Tax" },
+                    { "data": "Total_Sales" },
+                    { "data": "Activated_Mobile_Number" },
+                    { "data": "Serial_1" },
+                    { "data": "SKU" },
+                    { "data": "Trans_Start_Time", render: dateConveter },
+                    { "data": "Trans_Date", render: dateConveter },
+                    { "data": "Trans_Day" },
+                    { "data": "Trans_Month" },
+                    { "data": "Trans_Year" }
+                ]
+            });
+
+
+            function dateConveter(data, type, full, meta) {
+
+                return new Date(parseInt(data)).toDateString();
+            }
+
+
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            }
+
+
+            var toggler = document.getElementsByClassName("caret");
+            var i;
+
+            for (i = 0; i < toggler.length; i++) {
+                toggler[i].addEventListener("click", function () {
+                    this.parentElement.querySelector(".nested").classList.toggle("active");
+                    this.classList.toggle("caret-down");
+                });
+            }
+        </script>
+
+</body>
+
+</html>

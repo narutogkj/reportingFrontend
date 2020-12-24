@@ -1,0 +1,42 @@
+.input-group-text {
+    height: 30px;
+}
+.list-group{
+    max-height: 268px;
+    overflow-y:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.list-group-item{
+    margin-top: -8px;
+    margin-left: 29px;
+}
+.listElement{
+    margin-left: 5px;
+}
+.listHeader {
+    height: 40px;
+    margin-top: -7px;
+    margin-bottom: 7px;
+    background-color: blueviolet;
+    color: ivory;
+}
+.filterButtonDiv {
+    margin-right: 100px;
+}
+
+
+.chartTypes {
+    margin: 10px;
+}
+
+.horizontalBar{   
+    transform: rotateZ(90deg);
+}
+
+.listElement{
+    cursor: pointer;
+}
+
+.clpsd-hedder{
+    color:slateblue
+}

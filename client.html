@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui" />
+    <title></title>
+    <!-- jvectormap -->
+    <link href="css/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <link href="css/vanillaCalendar.css" rel="stylesheet" type="text/css" />
+    <link href="css/morris/morris.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script>
+        if (!localStorage.getItem('token') || !localStorage.getItem('userName') || !localStorage.getItem('password')) { window.location.replace(`index.html`) }
+        if (localStorage.getItem('admin') != 'true') { window.location.replace('index.html') }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+    <script src="js/chart.js"></script>
+</head>
+
+
+<body>
+    <!-- Navigation Bar-->
+    <header id="topnav">
+        <div class="topbar-main">
+            <div class="container-fluid">
+                <!-- Logo container-->
+                <div class="logo">
+                    <a href="dashboard.html" class="logo"><img src="images/logo.png" alt="" class=""></a>
+                </div>
+                <!-- End Logo container-->
+                <div class="menu-extras topbar-custom">
+                    <ul class="list-inline float-right mb-0">
+                        <li class="list-inline-item hide-phone app-search">
+                            <h4 id="username"></h4>
+                        </li>
+                        <!-- language-->
+
+
+                        <!-- User-->
+                        <li class="list-inline-item dropdown notification-list">
+                            <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown"
+                                href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <img src="images/avatar-1.jpg" alt="user" class="rounded-circle" />
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right profile-dropdown">
+                                <!-- item-->
+                                <div class="dropdown-item noti-title">
+                                    <h5>Welcome</h5>
+                                </div>
+                                <a class="dropdown-item" href="#"><i
+                                        class="fa fa-user-o m-r-5 text-muted"></i>Profile</a>
+                                <span id="createEmployeebutton">
+
+                                </span>
+                                <div class="dropdown-divider"></div>
+                                <button class="dropdown-item" id="logoutButton"><i
+                                        class="fa fa-sign-out m-r-5 text-muted"></i>Logout</button>
+                            </div>
+                        </li>
+                        <li class="menu-item list-inline-item">
+                            <!-- Mobile menu toggle-->
+                            <a class="navbar-toggle nav-link">
+                                <div class="lines"><span></span> <span></span> <span></span></div>
+                            </a>
+                            <!-- End mobile menu toggle-->
+                        </li>
+                    </ul>
+                </div>
+                <!-- end menu-extras -->
+                <div class="clearfix"></div>
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end topbar-main -->
+        <!-- MENU Start -->
+        <div class="navbar-custom">
+            <div class="container-fluid">
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu text-center">
+                        <li class="has-submenu">
+                            <a href="dashboard.html"><i class="fa fa-plane"></i>Dashboard</a>
+                        </li>
+                        <li class="has-submenu">
+
+                        </li>
+
+                        <!-- <li class="has-submenu">
+                            <a href="#"><i class="fa fa-product-hunt"></i>Reports</a>
+                            <ul class="submenu">
+                                <li><a class="dropdown-item" href="#">Sales Trend report</a></li>
+                            </ul>
+                        </li> -->
+                    </ul>
+                    <!-- End navigation menu -->
+                </div>
+                <!-- end #navigation -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end navbar-custom -->
+    </header>
+    <!-- End Navigation Bar-->
+
+
+
+
+    <script>
+        let username = document.querySelector('#username');
+        username.innerHTML = localStorage.getItem('userName')
+    </script>
+
+    <!-- Header End -->
+
+
+
+
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 ba-close">
+                    <div class="page-title-box123">
+                        <div class="btn-group pull-right" style="margin-top: -7px;">
+                            <a href='creatClient.html' class='btn btn-success'>Create New Client</a>
+                        </div>
+                        <h4 class="page-title">List Of Clients & Reports</h4>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <table class="table" id="clientTable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th class="border-top-0">Id</th>
+                                    <th class="border-top-0">UserName</th>
+                                    <th class="border-top-0">Firstname</th>
+                                    <th class="border-top-0">LastName</th>
+                                    <th class="border-top-0">Company</th>
+                                    <th class="border-top-0">Account Action</th>
+                                    <th class="border-top-0">View Report</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+
+
+
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">Copyright © 2020 agile . All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <!-- jQuery  -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.min.js"></script>
+    <script src="js/waves.js"></script>
+    <script src="js/jquery.nicescroll.js"></script>
+    <script src="js/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="js/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="js/skycons.min.js"></script>
+    <script src="js/vanillaCalendar.js"></script>
+    <script src="js/raphael-min.js"></script>
+    <script src="js/morris.min.js"></script>
+    <script src="js/dashborad.js"></script>
+    <script src="js/dataTables.responsive.min.js"></script>
+    <script src="js/responsive.bootstrap4.min.js"></script>
+    <!-- Required datatable js -->
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons examples -->
+    <script src="js/dataTables.buttons.min.js"></script>
+    <script src="js/buttons.bootstrap4.min.js"></script>
+    <!-- Datatable init js -->
+    <script src="js/datatables.init.js"></script>
+    <!-- App js -->
+    <script src="js/app.js"></script>
+    <script src="fetch/logout.js"></script>
+    <script src="fetch/api.js"></script>
+    <script>
+
+        let queryParamsString = (window.location.search).replace('?', '').split("&");
+        let queryParamsObject = {}
+        for (i = 0; i < queryParamsString.length; i++) {
+            queryParamsObject[queryParamsString[i].split('=')[0]] = queryParamsString[i].split('=')[1]
+        }
+        if (queryParamsObject.action == 'accountdelete') {
+            alert('Account Delete Successfully')
+        }
+
+
+        //Sidebar Navigation
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        var toggler = document.getElementsByClassName("caret");
+        for (var i = 0; i < toggler.length; i++) {
+            toggler[i].addEventListener("click", function () {
+                this.parentElement.querySelector(".nested").classList.toggle("active");
+                this.classList.toggle("caret-down");
+            });
+        }
+
+        function clientAction(data, type, full, meta) {
+            return `<a class="btn btn-danger" onclick="deleteAc(${data})">Delete</a>
+                    <a class="btn btn-danger" onclick="editAc(${data})">Edit</a> `;
+        }
+
+        function viewDashboard(data, type, full, meta) {
+            return `<a class="btn btn-success" onclick="moveToDashboard('${data}')">View</a>`;
+        }
+
+        $('#clientTable').DataTable({
+            "ajax": {
+                url: `${apiuser}`,
+                dataSrc: 'data',
+
+            },
+            "columns": [
+                { "data": "id" },
+                { "data": "userName" },
+                { "data": "firstName" },
+                { "data": "lastName" },
+                { "data": "company" },
+                { "data": "id", render: clientAction },
+                { "data": "userName", render: viewDashboard }
+
+            ]
+        });
+
+
+
+        // let clienttable = document.querySelector('#clienttable');
+        // axios.get(`${apiuser}`)
+        //     .then((res) => {
+        //         res.data.data.map(e => {
+        //             clienttable.innerHTML += `<td>${e.id}</td>
+        //                                     <td>${e.userName}</td>
+        //                                     <td>${e.firstName}</td>
+        //                                     <td>${e.lastName}</td>
+        //                                     <td>${e.company}</td>
+        //                                     <td>
+        //                                         <a class="btn btn-danger" onclick="deleteAc(${e.id})">Delete</a>
+        //                                         <a class="btn btn-danger" onclick="editAc(${e.id})">Edit</a> 
+        //                                     </td>
+        //                                     <td><a class="btn btn-success" onclick="moveToDashboard('${e.userName}')">View</a></td>`;
+        //         })
+        //     });
+        function moveToDashboard(username) {
+            localStorage.setItem('clientforreport', username);
+            window.location.replace(`dashboard.html?name=${username}`)
+        }
+        function deleteAc(id) {
+            axios.delete(`${apiuser}/${id}`).then(res => {
+                console.log(res)
+                if (res.data.success == 1) {
+                    window.location.replace(`client.html?action=accountdelete`)
+                } else if (res.data.success == 0) {
+                    alert(`Account Not found`)
+                }
+            }).catch(e => {
+                alert(e)
+            })
+        }
+        function editAc(id) {
+            window.location.replace(`clientEdit.html?id=${id}`)
+        }
+    </script>
+</body>
+
+</html>
